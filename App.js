@@ -5,23 +5,28 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+console.disableYellowBox = true;
+
 // allowing navigation between different app screens
 const Stack = createStackNavigator();
 
-export default function App() {
-  // setting up the homepage first then connecting the additional screens.
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Start">
-        <Stack.Screen
-          name="Welcome!"
-          component={Start}
-        />
-        <Stack.Screen
-          name="Chat"
-          component={Chat}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Start"
+        >
+          <Stack.Screen
+            name="Welcome!"
+            component={Start}
+          />
+          <Stack.Screen
+            name="Chat"
+            component={Chat}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
