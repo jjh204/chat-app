@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: '44%',
     width: '88%',
-    marginBottom: 20,
+    marginBottom: 30,
   },
 
   title: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     padding: 15,
     opacity: 0.5,
     marginTop: 20,
-    marginBottom: 40
+    marginBottom: 30
   },
 
   colorText: {
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   chatButton: {
     width: '88%',
     marginBottom: 20,
-    marginTop: 40,
+    marginTop: 30,
     backgroundColor: '#757083',
     padding: 20,
   },
