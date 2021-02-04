@@ -5,6 +5,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+// supressing warning messages in expo dev demo screen
 console.disableYellowBox = true;
 
 // allowing navigation between different app screens
