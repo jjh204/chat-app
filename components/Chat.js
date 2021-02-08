@@ -22,7 +22,6 @@ export default class Chat extends React.Component {
         avatar: '',
       },
       isConnected: false,
-      uid: 0,
       image: null,
       location: null
     };
@@ -55,21 +54,28 @@ export default class Chat extends React.Component {
 
         this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
           if (!user) {
-            await firebase.auth().signInAnonymously();
+            try {
+              await firebase.auth().signInAnonymously();
+            } catch (error) {
+              console.log(error);
+            }
           }
           this.setState({
             messages: [],
             user: {
               _id: user.uid,
-              name: name,
-            }
+              name: name
+            },
+            loggedInText:
+              `${name} has entered the chat`,
           });
+          this.referenceMessagesUser = firebase.firestore().collection('messages');
           this.unsubscribe = this.referenceMessages.orderBy('createdAt', 'desc').onSnapshot(this.onCollectionUpdate);
         });
       } else {
         console.log('offline');
         this.setState({
-          isConnected: false,
+          isConnected: false
         });
         this.getMessages();
       }
@@ -107,6 +113,7 @@ export default class Chat extends React.Component {
     });
   };
 
+  // giving the criteria template to add new messages to the firestore. Generic template set from GiftedChat.
   addMessages = () => {
     const message = this.state.messages[0];
     this.referenceMessages.add({
@@ -120,22 +127,24 @@ export default class Chat extends React.Component {
     });
   };
 
-  // getting the messages from local storage
-  async getMessages() {
+  // getting the messages from local storage. Try and catch on async functions to catch errors.
+  getMessages = async () => {
     let messages = '';
     try {
       messages = await AsyncStorage.getItem('messages') || [];
+      // parse the JSON string back to an object to use in app.
       this.setState({
-        messages: JSON.parse(messages)
+        messages: JSON.parse(messages),
       });
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  // creating function to save messages to local storage
-  async saveMessages() {
+  // creating function to save messages to local storage. Try and catch on async functions to catch errors.
+  saveMessages = async () => {
     try {
+      // stringify the JSON object so it can be saved in firestore as a string.
       await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
     } catch (error) {
       console.log(error.message);
@@ -143,7 +152,7 @@ export default class Chat extends React.Component {
   }
 
   // function to allow messages to be deleted
-  async deleteMessages() {
+  deleteMessages = async () => {
     try {
       await AsyncStorage.removeItem('messages');
       this.setState({
@@ -167,19 +176,20 @@ export default class Chat extends React.Component {
 
   //renderbubble changes the color of the bubble background.
   renderBubble(props) {
+    let color = this.props.route.params.color;
     return (
       <Bubble
         {...props}
         wrapperStyle={{
           left: {
-            backgroundColor: '#d7d8db'
+            backgroundColor: '#dcd4d0'
           },
           right: {
-            backgroundColor: '#435bb0'
+            backgroundColor: color
           }
         }}
       />
-    )
+    );
   }
 
   // prevents the toolbar from showing when user is offline
@@ -222,14 +232,13 @@ export default class Chat extends React.Component {
   render() {
     // name and color being passed as props from the start screen
     let name = this.props.route.params.name;
-    let color = this.props.route.params.color;
 
     // setting the users name as the title for chat screen - I believe this is causing a warning currently
     // cannot update component from inside the function body of a different component.
     this.props.navigation.setOptions({ title: 'Welcome ' + name + '!' });
 
     return (
-      <View style={{ flex: 1, backgroundColor: color }}>
+      <View style={{ flex: 1 }}>
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}

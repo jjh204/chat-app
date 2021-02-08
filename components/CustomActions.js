@@ -16,7 +16,7 @@ export default class CustomActions extends React.Component {
     try {
       const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
       if (status === 'granted') {
-        let result = await ImagePicker.launchImageLibraryAsync({
+        const result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images,
         }).catch(error => console.log(error));
 
@@ -51,9 +51,9 @@ export default class CustomActions extends React.Component {
 
   // giving permission to get current location
   getLocation = async () => {
-    const { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status === 'granted') {
-      try {
+    try {
+      const { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status === 'granted') {
         const location = await Location.getCurrentPositionAsync({});
         if (location) {
           this.props.onSend({
@@ -63,37 +63,42 @@ export default class CustomActions extends React.Component {
             },
           });
         }
-      } catch (error) {
-        console.log(error);
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
+
   // upload image to Storage with XMLHttpRequest
   uploadImage = async (uri) => {
-    const blob = await new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-        resolve(xhr.response);
-      };
-      xhr.onerror = function (e) {
-        console.log(e);
-        reject(new TypeError('Network request failed'));
-      };
-      xhr.responseType = 'blob';
-      xhr.open('GET', uri, true);
-      xhr.send(null);
-    });
+    try {
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function (e) {
+          console.log(e);
+          reject(new TypeError('Network request failed'));
+        };
+        xhr.responseType = 'blob';
+        xhr.open('GET', uri, true);
+        xhr.send(null);
+      });
 
-    // this will allow the images to have unique names in storage
-    const imageName = uri.split('/');
-    const imageLength = imageName[imageName.length - 1];
+      // this will allow the images to have unique names in storage
+      const imageName = uri.split('/');
+      const imageLength = imageName[imageName.length - 1];
 
-    const ref = firebase.storage().ref().child(`images/${imageLength}`);
-    const snapshot = await ref.put(blob);
-    blob.close();
-    return await snapshot.ref.getDownloadURL();
-  }
+      const ref = firebase.storage().ref().child(`images/${imageLength}`);
+      const snapshot = await ref.put(blob);
+      blob.close();
+      return await snapshot.ref.getDownloadURL();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // upload image to Storage with fetch() and blob()
   /* uploadImageFetch = async (uri) => {
@@ -115,17 +120,21 @@ export default class CustomActions extends React.Component {
         cancelButtonIndex,
       },
       async (buttonIndex) => {
-        switch (buttonIndex) {
-          case 0:
-            console.log('user wants to pick an image');
-            return this.pickImage();
-          case 1:
-            console.log('user wants to take a photo');
-            return this.takePhoto();
-          case 2:
-            console.log('user wants to get their location');
-            return this.getLocation();
-          default:
+        try {
+          switch (buttonIndex) {
+            case 0:
+              console.log('user wants to pick an image');
+              return this.pickImage();
+            case 1:
+              console.log('user wants to take a photo');
+              return this.takePhoto();
+            case 2:
+              console.log('user wants to get their location');
+              return this.getLocation();
+            default:
+          }
+        } catch (error) {
+          console.log(error);
         }
       },
     );
@@ -145,6 +154,7 @@ export default class CustomActions extends React.Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
