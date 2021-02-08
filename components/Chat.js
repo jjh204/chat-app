@@ -1,15 +1,16 @@
 import React from 'react';
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
-import { StyleSheet, Text, View, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Platform, KeyboardAvoidingView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import NetInfo from '@react-native-community/netinfo';
+import CustomActions from './CustomActions';
+import MapView from 'react-native-maps';
 
 // importing firebase 
 const firebase = require('firebase');
 require('firebase/firestore');
 
 export default class Chat extends React.Component {
-
   // adding messages into the state object of the app
   constructor() {
     super();
@@ -21,7 +22,9 @@ export default class Chat extends React.Component {
         avatar: '',
       },
       isConnected: false,
-      uid: 0
+      uid: 0,
+      image: null,
+      location: null
     };
 
     if (!firebase.apps.length) {
@@ -37,7 +40,7 @@ export default class Chat extends React.Component {
       });
     }
 
-    //this.referenceMessagesUser = null;
+    this.referenceMessagesUser = null;
     this.referenceMessages = firebase.firestore().collection('messages');
   }
   componentDidMount() {
@@ -95,6 +98,8 @@ export default class Chat extends React.Component {
           name: data.user.name,
           avatar: data.user.avatar,
         },
+        image: data.image || '',
+        location: data.location
       });
     });
     this.setState({
@@ -109,7 +114,9 @@ export default class Chat extends React.Component {
       text: message.text || '',
       createdAt: message.createdAt,
       user: message.user,
-      sent: true,
+      image: message.image || '',
+      location: message.location || null,
+      sent: true
     });
   };
 
@@ -179,12 +186,37 @@ export default class Chat extends React.Component {
   renderInputToolbar(props) {
     if (this.state.isConnected == false) {
     } else {
+      return (<InputToolbar {...props} />);
+    }
+  }
+
+  // render custom actions to provide access to camera and location in device
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  }
+
+  // rendering the maps location data into the bubble message
+  renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
       return (
-        <InputToolbar
-          {...props}
+        <MapView
+          style={{
+            width: 150,
+            height: 100,
+            borderRadius: 13,
+            margin: 3
+          }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
         />
       );
     }
+    return null;
   }
 
   render() {
@@ -194,34 +226,21 @@ export default class Chat extends React.Component {
 
     // setting the users name as the title for chat screen - I believe this is causing a warning currently
     // cannot update component from inside the function body of a different component.
-    this.props.navigation.setOptions({ title: name });
+    this.props.navigation.setOptions({ title: 'Welcome ' + name + '!' });
 
     return (
       <View style={{ flex: 1, backgroundColor: color }}>
-        <Text style={styles.welcome}>
-          Welcome {name}!
-        </Text>
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
+          renderActions={this.renderCustomActions.bind(this)}
+          renderCustomView={this.renderCustomView.bind(this)}
           messages={this.state.messages}
-          onSend={messages => this.onSend(messages)}
           user={this.state.user}
+          onSend={messages => this.onSend(messages)}
         />
         { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-  welcome: {
-    fontSize: 16,
-    fontWeight: '300',
-    color: '#afafb5',
-    marginTop: 10,
-    alignSelf: 'center'
-  }
-
-})
