@@ -5,7 +5,7 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-![Screenshot of homepage](/images/homepage.jpg = 150x)  ![Screenshot of chat screen](/images/chatscreen.jpg = 150x)
+![Screenshot of homepage](/images/homepage.jpg = 75x150)  ![Screenshot of chat screen](/images/chatscreen.jpg = 75x150)
 
 ## Installation
 
@@ -50,9 +50,9 @@ To start the app you can do so by running:
 
 ### `expo start`
 
-## Android Studio
+## Device Emulator
 
-In order to interact with the app on a mobile device you can download an emulator such as [Android Studio](https://developer.android.com/studio/).  
+In order to interact with the app on a mobile device you can either download an emulator such as [Android Studio](https://developer.android.com/studio/) and follow the instructions to install or use the app EXPO GO directly on your own mobile.  
 
 ## Firebase AsyncStorage
 
