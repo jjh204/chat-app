@@ -5,7 +5,7 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-![Screenshot of homepage](/images/homepage.jpg)  ![Screenshot of chat screen](/images/chatscreen.jpg)
+![Screenshot of homepage](/images/homepage.jpg = 150x)  ![Screenshot of chat screen](/images/chatscreen.jpg = 150x)
 
 ## Installation
 
@@ -15,9 +15,7 @@ To run the app you will need to install expo using the following comand:
 
 ## Project Dependencies
 
-You will need to install the following dependancies. Open the project root folder and run the command:
-
-### `npm install`
+You will need to install the following dependancies. 
 
 ```react-native-community/async-storage
    react-native-community/masked-view
@@ -43,6 +41,11 @@ You will need to install the following dependancies. Open the project root folde
    react-native-screens
    react-native-web
 ```
+
+You can do so by opening the project root folder and running the command:
+
+### `npm install`
+
 To start the app you can do so by running:
 
 ### `expo start`
