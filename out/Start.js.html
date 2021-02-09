@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Start.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Start.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
+
+/**
+*@requires react
+*@requires react-native
+*/
+
+export default class Start extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      color: '',
+    };
+  }
+
+  render() {
+    return (
+      &lt;ImageBackground source={require('../assets/BackgroundImage.png')} style={styles.image}>
+        &lt;Text style={styles.title}>Chat App&lt;/Text>
+        &lt;View style={styles.container}>
+          {/** 
+            * the text input field will set the users name
+            * to the state to use in the chat screen 
+          */}
+          &lt;TextInput
+            style={styles.textbox}
+            onChangeText={(name) => this.setState({ name })}
+            value={this.state.name}
+            underlineColorAndroid="transparent"
+            placeholder="Your Name"
+          />
+          &lt;Text style={styles.colorText}>Choose Background Color:&lt;/Text>
+
+          &lt;View style={styles.colorChoices}>
+            {/** 
+             * touchableOpacity component allows the user to touch the
+             * required color and set to the state to be used in chat screen 
+            */}
+            &lt;TouchableOpacity
+              accessible
+              accessibilityLabel="Background Color 1"
+              accessibilityHint="Lets you choose what color your background is in the chat screen"
+              accessibilityRole="button"
+              onPress={() => this.setState({ color: '#090c08' })}
+              style={[styles.colorBtn, { backgroundColor: '#090c08' }]}
+            />
+            &lt;TouchableOpacity
+              accessible
+              accessibilityLabel="Background Color 2"
+              accessibilityHint="Lets you choose what color your background is in the chat screen"
+              accessibilityRole="button"
+              onPress={() => this.setState({ color: '#474056' })}
+              style={[styles.colorBtn, { backgroundColor: '#474056' }]}
+            />
+            &lt;TouchableOpacity
+              accessible
+              accessibilityLabel="Background Color 3"
+              accessibilityHint="Lets you choose what color your background is in the chat screen"
+              accessibilityRole="button"
+              onPress={() => this.setState({ color: '#8a95a5' })}
+              style={[styles.colorBtn, { backgroundColor: '#8a95a5' }]}
+            />
+            &lt;TouchableOpacity
+              accessible
+              accessibilityLabel="Background Color 4"
+              accessibilityHint="Lets you choose what color your background is in the chat screen"
+              accessibilityRole="button"
+              onPress={() => this.setState({ color: '#b9c6ae' })}
+              style={[styles.colorBtn, { backgroundColor: '#b9c6ae' }]}
+            />
+          &lt;/View>
+          {/** 
+            * the 'button' sends both color and name to the chat screen state.
+            * Then using touchableOpacity so that the 'button' can be styled as required 
+          */}
+          &lt;TouchableOpacity
+            accessible
+            accessibilityLabel="Start Chatting"
+            accessibilityHint="Click to navigate to the Chat screen"
+            accessibilityRole="button"
+            style={styles.chatButton}
+            onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, color: this.state.color })}
+          >
+            &lt;Text style={styles.btnText}>Start Chatting&lt;/Text>
+          &lt;/TouchableOpacity>
+        &lt;/View>
+      &lt;/ImageBackground>
+
+    );
+  }
+}
+
+/**
+ * styles sheet for styling the start screen
+ */
+
+const styles = StyleSheet.create({
+
+  image: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: '100%',
+  },
+
+  container: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '44%',
+    width: '88%',
+    marginBottom: 30,
+  },
+
+  title: {
+    color: '#fff',
+    fontSize: 45,
+    fontWeight: '700',
+    alignItems: 'center',
+    marginTop: 100,
+  },
+
+  textbox: {
+    fontSize: 16,
+    fontWeight: '300',
+    width: '88%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 15,
+    opacity: 0.5,
+    marginTop: 20,
+    marginBottom: 30,
+  },
+
+  colorText: {
+    fontSize: 16,
+    fontWeight: '300',
+    color: '#757083',
+    alignSelf: 'flex-start',
+    marginLeft: 30,
+  },
+
+  colorChoices: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignSelf: 'flex-start',
+    marginLeft: 20,
+  },
+
+  colorBtn: {
+    height: 45,
+    width: 45,
+    borderRadius: 75,
+    margin: 10,
+  },
+
+  chatButton: {
+    width: '88%',
+    marginBottom: 20,
+    marginTop: 30,
+    backgroundColor: '#757083',
+    padding: 20,
+  },
+
+  btnText: {
+    color: '#fff',
+    alignSelf: 'center',
+    fontSize: 16,
+    fontWeight: '700',
+  },
+
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addMessages">addMessages</a></li><li><a href="global.html#deleteMessages">deleteMessages</a></li><li><a href="global.html#firebase">firebase</a></li><li><a href="global.html#getLocation">getLocation</a></li><li><a href="global.html#getMessages">getMessages</a></li><li><a href="global.html#onActionPress">onActionPress</a></li><li><a href="global.html#onAuthStateChanged">onAuthStateChanged</a></li><li><a href="global.html#onCollectionUpdate">onCollectionUpdate</a></li><li><a href="global.html#onSend">onSend</a></li><li><a href="global.html#pickImage">pickImage</a></li><li><a href="global.html#renderBubble">renderBubble</a></li><li><a href="global.html#renderCustomActions">renderCustomActions</a></li><li><a href="global.html#renderCustomView">renderCustomView</a></li><li><a href="global.html#renderInputToolbar">renderInputToolbar</a></li><li><a href="global.html#saveMessages">saveMessages</a></li><li><a href="global.html#styles">styles</a></li><li><a href="global.html#takePhoto">takePhoto</a></li><li><a href="global.html#uploadImage">uploadImage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Feb 09 2021 16:08:50 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
