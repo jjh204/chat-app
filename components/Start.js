@@ -1,35 +1,52 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, Platform, KeyboardAvoidingView } from 'react-native';
-// import { ScrollView } from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
+
+/**
+*@requires react
+*@requires react-native
+*/
 
 export default class Start extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      color: ""
+      name: '',
+      color: '',
     };
   }
 
   render() {
     return (
-      <ImageBackground source={require("../assets/BackgroundImage.png")} style={styles.image}>
+      <ImageBackground source={require('../assets/BackgroundImage.png')} style={styles.image}>
         <Text style={styles.title}>Chat App</Text>
         <View style={styles.container}>
-          {/* the text input field will set the users name to the state to use in the chat screen */}
+          {/** 
+            * the text input field will set the users name
+            * to the state to use in the chat screen 
+          */}
           <TextInput
             style={styles.textbox}
             onChangeText={(name) => this.setState({ name })}
             value={this.state.name}
             underlineColorAndroid="transparent"
-            placeholder="Your Name" />
+            placeholder="Your Name"
+          />
           <Text style={styles.colorText}>Choose Background Color:</Text>
 
           <View style={styles.colorChoices}>
-            {/* touchableOpacity component allows the user to touch the required color and set to the state to be used in chat screen */}
+            {/** 
+             * touchableOpacity component allows the user to touch the
+             * required color and set to the state to be used in chat screen 
+            */}
             <TouchableOpacity
-              accessible={true}
+              accessible
               accessibilityLabel="Background Color 1"
               accessibilityHint="Lets you choose what color your background is in the chat screen"
               accessibilityRole="button"
@@ -37,7 +54,7 @@ export default class Start extends React.Component {
               style={[styles.colorBtn, { backgroundColor: '#090c08' }]}
             />
             <TouchableOpacity
-              accessible={true}
+              accessible
               accessibilityLabel="Background Color 2"
               accessibilityHint="Lets you choose what color your background is in the chat screen"
               accessibilityRole="button"
@@ -45,7 +62,7 @@ export default class Start extends React.Component {
               style={[styles.colorBtn, { backgroundColor: '#474056' }]}
             />
             <TouchableOpacity
-              accessible={true}
+              accessible
               accessibilityLabel="Background Color 3"
               accessibilityHint="Lets you choose what color your background is in the chat screen"
               accessibilityRole="button"
@@ -53,7 +70,7 @@ export default class Start extends React.Component {
               style={[styles.colorBtn, { backgroundColor: '#8a95a5' }]}
             />
             <TouchableOpacity
-              accessible={true}
+              accessible
               accessibilityLabel="Background Color 4"
               accessibilityHint="Lets you choose what color your background is in the chat screen"
               accessibilityRole="button"
@@ -61,23 +78,30 @@ export default class Start extends React.Component {
               style={[styles.colorBtn, { backgroundColor: '#b9c6ae' }]}
             />
           </View>
-          {/* finally the 'button' sends both color and name to the chat screen state. Then using touchableOpacity so that the 'button' can be styled as required */}
+          {/** 
+            * the 'button' sends both color and name to the chat screen state.
+            * Then using touchableOpacity so that the 'button' can be styled as required 
+          */}
           <TouchableOpacity
-            accessible={true}
+            accessible
             accessibilityLabel="Start Chatting"
             accessibilityHint="Click to navigate to the Chat screen"
             accessibilityRole="button"
             style={styles.chatButton}
-            onPress={() => this.props.navigation.navigate("Chat", { name: this.state.name, color: this.state.color })}>
+            onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, color: this.state.color })}
+          >
             <Text style={styles.btnText}>Start Chatting</Text>
           </TouchableOpacity>
-          {/* {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null} */}
         </View>
       </ImageBackground>
 
     );
   }
 }
+
+/**
+ * styles sheet for styling the start screen
+ */
 
 const styles = StyleSheet.create({
 
@@ -86,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
 
   container: {
@@ -103,7 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 45,
     fontWeight: '700',
     alignItems: 'center',
-    marginTop: 100
+    marginTop: 100,
   },
 
   textbox: {
@@ -115,7 +139,7 @@ const styles = StyleSheet.create({
     padding: 15,
     opacity: 0.5,
     marginTop: 20,
-    marginBottom: 30
+    marginBottom: 30,
   },
 
   colorText: {
@@ -123,7 +147,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#757083',
     alignSelf: 'flex-start',
-    marginLeft: 30
+    marginLeft: 30,
   },
 
   colorChoices: {
@@ -137,7 +161,7 @@ const styles = StyleSheet.create({
     height: 45,
     width: 45,
     borderRadius: 75,
-    margin: 10
+    margin: 10,
   },
 
   chatButton: {
@@ -152,7 +176,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     alignSelf: 'center',
     fontSize: 16,
-    fontWeight: '700'
-  }
+    fontWeight: '700',
+  },
 
 });

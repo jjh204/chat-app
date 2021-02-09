@@ -1,9 +1,9 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Start from './components/Start';
 import Chat from './components/Chat';
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 // supressing warning messages in expo dev demo screen
 console.disableYellowBox = true;

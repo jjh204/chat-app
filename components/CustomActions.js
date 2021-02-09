@@ -1,17 +1,37 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 
-// importing firebase 
+/**
+  *@requires prop-types
+  *@requires react
+  *@requires react-native
+  *@requires expo-permissions
+  *@requires expo-image-picker
+  *@requires expo-location
+  */
+
+// importing firebase
 const firebase = require('firebase');
 require('firebase/firestore');
 
 export default class CustomActions extends React.Component {
 
-  // giving permission to select an image from the photo media library
+  /**
+    * giving permission to select an image from the photo media library
+    * @function pickImage
+    * @async
+    * @return {Promise<image>} selects an image from the users media library
+    */
+
   pickImage = async () => {
     try {
       const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
@@ -26,11 +46,17 @@ export default class CustomActions extends React.Component {
         }
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
-  // giving permission to take a new photo
+  /**
+    * giving permission to take a new photo
+    * @function takePhoto
+    * @async
+    * @return {Promise<image>} takes a photo using the users camera
+    */
+
   takePhoto = async () => {
     try {
       const { status } = await Permissions.askAsync(Permissions.CAMERA, Permissions.MEDIA_LIBRARY);
@@ -49,7 +75,13 @@ export default class CustomActions extends React.Component {
     }
   };
 
-  // giving permission to get current location
+  /**
+    * giving permission to get current location
+    * @function getLocation
+    * @async
+    * @return {Promise<location>} provides geolocation from users device 
+    */
+
   getLocation = async () => {
     try {
       const { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -69,8 +101,14 @@ export default class CustomActions extends React.Component {
     }
   };
 
+  /**
+    * uploads sent image to Storage with XMLHttpRequest
+    * @function uploadImage
+    * @async
+    * @param {string} uri
+    * @return {Promise<string>} provides the new url for the stored image
+    */
 
-  // upload image to Storage with XMLHttpRequest
   uploadImage = async (uri) => {
     try {
       const blob = await new Promise((resolve, reject) => {
@@ -100,17 +138,13 @@ export default class CustomActions extends React.Component {
     }
   };
 
-  // upload image to Storage with fetch() and blob()
-  /* uploadImageFetch = async (uri) => {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    const ref = firebase.storage().ref().child('my-image');
-    const snapshot = await ref.put(blob);
-    return await snapshot.ref.getDownloadURL();
-  } */
+  /**
+    * Actions open and user can select the desired action. Cancel will close the options.
+    * @function onActionPress
+    * @async
+    * provides the options for the user to select using gitedchat template
+    */
 
-
-  // when selecting Actions then the options open and user can select the desired action. Cancel will close the options. 
   onActionPress = () => {
     const options = ['Choose From Library', 'Take Picture', 'Send Location', 'Cancel'];
     const cancelButtonIndex = options.length - 1;
@@ -142,10 +176,13 @@ export default class CustomActions extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity style={[styles.container]} onPress={this.onActionPress}
+      <TouchableOpacity
+        style={[styles.container]}
+        onPress={this.onActionPress}
         accessible={true}
-        accessibilityLabel='Actions'
-        accessibilityHint='Send an image, take a Photo or send current location' >
+        accessibilityLabel="Actions"
+        accessibilityHint="Send an image, take a Photo or send current location"
+      >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
         </View>
@@ -155,6 +192,9 @@ export default class CustomActions extends React.Component {
   }
 }
 
+/**
+ * styles sheet for styling the custom actions 
+ */
 
 const styles = StyleSheet.create({
   container: {
