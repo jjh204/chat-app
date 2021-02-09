@@ -6,11 +6,11 @@ It is designed specifically for mobile devices using:
 * with GiftedChat
 
 <img src="/images/homepage.jpg" alt="Homepage"
-	title="Homepage" width="75" height="150" />
+	title="Homepage" width="150" height="300" />  
+	
+<img src="/images/chatscreen.jpg" alt="Chat Screen"
+	title="Chat Screen" width="150" height="300" />
    
-   
-  ![Screenshot of chat screen](/images/chatscreen.jpg = 75x150)
-
 ## Installation
 
 To run the app you will need to install expo using the following comand:
