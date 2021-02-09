@@ -5,9 +5,14 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-![Screenshot of homepage](/images/homepage.jpg){: width=250 height=500 style="float:right; padding:16px"}
-![Screenshot of chat screen](/images/homepage.jpg){: width=250 height=500 style="float:left; padding:16px"}
-   
+![Screenshot of homepage](/images/homepage.jpg#screenshot)
+![Screenshot of chat screen](/images/homepage.jpg#screenshot)
+
+img[src*="#thumbnail"] {
+   width:250px;
+   height:500px;
+}
+
 ## Installation
 
 To run the app you will need to install expo using the following comand:
