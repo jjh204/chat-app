@@ -54,7 +54,7 @@ To start the app you can do so by running:
 
 In order to interact with the app on a mobile device you can download an emulator such as [Android Studio](https://developer.android.com/studio/).  
 
-## Firebase
+## Firebase AsyncStorage
 
 You will also need to create a firebase account to store any message data.
 To do so you can follow the below steps:
