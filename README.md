@@ -2,8 +2,7 @@
 
 This project is designed to provides users with a chat interface including the ability to share images, location and view previous messages when offline.
 It is designed specifically for mobile devices using:
-* React Native 
-* with GiftedChat
+* React Native with GiftedChat
 
 ## Installation
 
@@ -70,7 +69,7 @@ To do so you can follow the below steps:
 
 ## Project Kanban Board
 
-Take a look at the project Kanban board and tasks by following the link below:
+Take a look at the project Kanban board and tasks by following the link below: </br>
 [Kanban board](https://trello.com/b/qy5mGnB0/chat-app)
 
 ## Screenshots
