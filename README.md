@@ -70,4 +70,6 @@ To do so you can follow the below steps:
 9. You will need to navigate to 'Project Settings -> General -> Your Apps' to generate the firebase config
 10. Copy the code generated in to the Chat.js file firebase configuration to connect the app to the database.
 
-[Link to Project Kanban board](https://trello.com/b/qy5mGnB0/chat-app)
+## Project Kanban Board
+
+[Kanban board](https://trello.com/b/qy5mGnB0/chat-app)
