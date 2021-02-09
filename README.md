@@ -5,13 +5,11 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-![Screenshot of homepage](/images/homepage.jpg#screenshot)
-![Screenshot of chat screen](/images/homepage.jpg#screenshot)
+<img src="/images/homepage.jpg" alt="Homepage"
+	title="Homepage" width="250" height="500" float="left" />
 
-img[src*="#thumbnail"] {
-   width:250px;
-   height:500px;
-}
+<img src="/images/chatscreen.jpg" alt="Chat Screen"
+	title="Chat Screen" width="250" height="500"/>
 
 ## Installation
 
