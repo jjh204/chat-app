@@ -75,5 +75,8 @@ To do so you can follow the below steps:
 
 ## Project Kanban Board
 
+<<<<<<< HEAD
 Take a look at the project Kanban board and tasks by following the link below:
+=======
+>>>>>>> 5970c028fdb8cd1602e5ed3d9dd0f798f6c9d4fb
 [Kanban board](https://trello.com/b/qy5mGnB0/chat-app)
