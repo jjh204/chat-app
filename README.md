@@ -5,13 +5,8 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-<div display="inline-block">
-<img src="/images/homepage.jpg" alt="Homepage"
-	title="Homepage" width="250" height="500" float="left" />
-
-<img src="/images/chatscreen.jpg" alt="Chat Screen"
-	title="Chat Screen" width="250" height="500"/>
-</div>
+<img align="left" width="250" height="500" src="/images/homepage.jpg">
+<img align="right" width="250" height="500" src="/images/chatscreen.jpg>
 
 ## Installation
 
