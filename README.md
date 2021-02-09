@@ -5,10 +5,9 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-<div align="center">
-<img align="left" width="250" height="500" src="/images/homepage.jpg">
-<img align="right" width="250" height="500" src="/images/chatscreen.jpg">
-</div>
+
+<img style="float: left" width="250" height="500" src="/images/homepage.jpg">
+<img style="float: right" width="250" height="500" src="/images/chatscreen.jpg">
 
 ## Installation
 
@@ -75,8 +74,5 @@ To do so you can follow the below steps:
 
 ## Project Kanban Board
 
-<<<<<<< HEAD
 Take a look at the project Kanban board and tasks by following the link below:
-=======
->>>>>>> 5970c028fdb8cd1602e5ed3d9dd0f798f6c9d4fb
 [Kanban board](https://trello.com/b/qy5mGnB0/chat-app)
