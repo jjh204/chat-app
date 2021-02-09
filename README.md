@@ -5,10 +5,6 @@ It is designed specifically for mobile devices using:
 * React Native 
 * with GiftedChat
 
-
-<img style="float: left" width="250" height="500" src="/images/homepage.jpg">
-<img style="float: right" width="250" height="500" src="/images/chatscreen.jpg">
-
 ## Installation
 
 To run the app you will need to install expo using the following comand:
@@ -76,3 +72,10 @@ To do so you can follow the below steps:
 
 Take a look at the project Kanban board and tasks by following the link below:
 [Kanban board](https://trello.com/b/qy5mGnB0/chat-app)
+
+## Screenshots
+
+<div align="center">
+<img align="left" width="250" height="500" src="/images/homepage.jpg">
+<img align="right" width="250" height="500" src="/images/chatscreen.jpg">
+</div>
