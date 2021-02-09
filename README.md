@@ -6,10 +6,10 @@ It is designed specifically for mobile devices using:
 * with GiftedChat
 
 <img src="/images/homepage.jpg" alt="Homepage"
-	title="Homepage" width="250" height="400" />  
+	title="Homepage" width="250" height="500" />  
 	
 <img src="/images/chatscreen.jpg" alt="Chat Screen"
-	title="Chat Screen" width="250" height="400" />
+	title="Chat Screen" width="250" height="500" />
    
 ## Installation
 
