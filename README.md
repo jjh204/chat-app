@@ -1,9 +1,9 @@
-** CHAT-APP **
+## CHAT-APP
 
 This project is designed to provides users with a chat interface including the ability to share images, location and view previous messages when offline.
 It is designed specifically for mobile devices using:
-** React Native ** 
-** with GiftedChat **
+* React Native 
+* with GiftedChat
 
 ![Screenshot of homepage](/images/homepage.jpg)  ![Screenshot of chat screen](/images/chatscreen.jpg)
 
